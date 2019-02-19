@@ -22,6 +22,7 @@ namespace Calorie_Counter
         public void PrintUser()
         {
             Console.WriteLine(_userName);
+
         }
     }
 }
