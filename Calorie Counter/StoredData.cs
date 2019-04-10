@@ -8,18 +8,33 @@ namespace Calorie_Counter
 {
     public class StoredData
     {
+        private List<UserProfile> userProfiles;
 
-        private List<UserProfile> userProfiles = new List<UserProfile>();
+        public StoredData()
+        {
+            userProfiles = new List<UserProfile>();
+        }
 
         public void AddUser(string name, string gender, int age, int height, int weight)
         {
             userProfiles.Add(new UserProfile(name, gender, age, height, weight));
         }
 
-        public List<UserProfile> FindUser(string name, bool foundUser)
+        public List<UserProfile> FindUser(string name)
         {
             List<UserProfile> found = new List<UserProfile>();
+            foreach(UserProfile user in userProfiles)
+            {
+                user.Name = name;
+            }
+            return found;
+        }
 
+        public void DeleteUser(string name)
+        {
+            List<UserProfile> found = new List<UserProfile>();
+            foreach (UserProfile user in userProfiles)
+                userProfiles.Remove(user);
         }
     }
 }
