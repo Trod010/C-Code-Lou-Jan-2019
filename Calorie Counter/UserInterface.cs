@@ -15,6 +15,13 @@ namespace Calorie_Counter
             storedData = new StoredData();
         }
 
+        private void ShowUser(string name)
+        {
+            List<UserProfile> userProfiles = storedData.FindUser(name);
+            foreach (UserProfile user in userProfiles)
+                Console.WriteLine(user);
+        }
+
         public void AddUser()
         {
             Console.WriteLine("Hi there. Can you tell me your name?");
@@ -30,7 +37,34 @@ namespace Calorie_Counter
             storedData.AddUser(name, gender, age, height, weight);
         }
 
+        public void SearchUser()
+        {
+            string userName = Console.ReadLine();
+            List<UserProfile> userProfiles = storedData.FindUser(userName);
+            if(userProfiles.Count() > 0)
+            {
+                Console.WriteLine("Found user!");
+                foreach (UserProfile user in userProfiles)
+                    Console.WriteLine(user);
+            }
+            else
+            {
+                Console.WriteLine("User not found.");
+            }
+        }
 
+        public void DeleteUser()
+        {
+            Console.WriteLine("The user profile will be deleted.");
+            string userName = Console.ReadLine();
+            storedData.DeleteUser(userName);
+        }
 
+        public void HomeScreen()
+        {
+            Console.Clear();
+            Console.WriteLine("Hey there. Welcome to your virtual calorie counter.");
+            Console.WriteLine("The time is {0}", DateTime.Now);
+        }
     }
 }
